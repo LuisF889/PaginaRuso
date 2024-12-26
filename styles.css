@@ -1,0 +1,160 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+/* Tema oscuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+/* Contenedor de frases en modo oscuro */
+body.dark-mode .contenedor-frase {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+/* Letras del alfabeto en modo oscuro */
+body.dark-mode .letra {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+/* Botón en modo oscuro */
+body.dark-mode button {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+body.dark-mode button:hover {
+    background-color: #444;
+}
+
+/* Títulos */
+h1 {
+    color: #007BFF;
+}
+
+/* Frases */
+.contenedor-frase {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 500px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.frase {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.idioma {
+    font-size: 1.2em;
+    color: gray;
+}
+
+/* Abecedario */
+.abecedario {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.letra {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f3f3f3;
+    font-weight: bold;
+}
+
+/* Botón */
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para la sección de práctica */
+#practica-traduccion {
+    margin-top: 30px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input para la traducción */
+#respuesta-traduccion {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Cambios de color según el resultado */
+#respuesta-traduccion.correcto {
+    border-color: #28a745;
+    background-color: #d4edda;
+    color: #155724;
+}
+
+#respuesta-traduccion.incorrecto {
+    border-color: #dc3545;
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Botón comprobar */
+#boton-comprobar {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#boton-comprobar:hover {
+    background-color: #0056b3;
+}
+
+
+/* Estilos para respuestas correctas e incorrectas */
+#respuesta-traduccion.correcto {
+    background-color: #4CAF50;  /* Verde para respuesta correcta */
+    color: white;
+}
+
+#respuesta-traduccion.incorrecto {
+    background-color: #f44336;  /* Rojo para respuesta incorrecta */
+    color: white;
+}

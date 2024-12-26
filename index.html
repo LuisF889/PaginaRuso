@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frases Multilingües</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Botón para cambiar el tema -->
+    <button id="boton-tema">Cambiar a modo oscuro</button>
+
+    <h1>Frases para Aprender Idiomas</h1>
+    <div id="contenedor-frases">
+        <!-- Las frases se mostrarán aquí -->
+    </div>
+
+    <button id="boton-siguiente">Siguiente Frase</button>
+
+    <div class="abecedario">
+        <div class="letra">А - A</div>
+        <div class="letra">Б - BE</div>
+        <div class="letra">В - VE</div>
+        <div class="letra">Г - GE</div>
+        <div class="letra">Д - DE</div>
+        <div class="letra">Е - YE</div>
+        <div class="letra">Ё - YO</div>
+        <div class="letra">Ж - Zh</div>
+        <div class="letra">З - Z</div>
+        <div class="letra">И - I</div>
+        <div class="letra">Й - Y</div>
+        <div class="letra">К - KA</div>
+        <div class="letra">Л - EL</div>
+        <div class="letra">М - EM</div>
+        <div class="letra">Н - EN</div>
+        <div class="letra">О - O</div>
+        <div class="letra">П - PE</div>
+        <div class="letra">Р - ER</div>
+        <div class="letra">С - ES</div>
+        <div class="letra">Т - TE</div>
+        <div class="letra">У - U</div>
+        <div class="letra">Ф - EF</div>
+        <div class="letra">Х - HA</div>
+        <div class="letra">Ц - TS</div>
+        <div class="letra">Ч - CH</div>
+        <div class="letra">Ш - SH</div>
+        <div class="letra">Щ - Shch</div>
+        <div class="letra">Ъ - Hard Sign</div>
+        <div class="letra">Ы - Y</div>
+        <div class="letra">Ь - Soft Sign</div>
+        <div class="letra">Э - E</div>
+        <div class="letra">Ю - YU</div>
+        <div class="letra">Я - YA</div>
+    </div>
+
+    <div id="practica-traduccion">
+        <h2>Práctica de Traducción</h2>
+        <div id="frase-practica"></div>
+        <input type="text" id="respuesta-traduccion" placeholder="Escribe la traducción aquí">
+        <button id="boton-comprobar-traduccion">Comprobar</button>
+        <button id="boton-siguiente-prueba" style="display: none;">Siguiente Prueba</button>
+    </div>
+
+    <script>
+        const frases = [
+        { es: "Hola", en: "Hello", ru: "Привет", pron: "Privet" },
+            { es: "Gracias", en: "Thank you", ru: "Спасибо", pron: "Spasibo" },
+            { es: "Por favor", en: "Please", ru: "Пожалуйста", pron: "Pozhaluysta" },
+            { es: "¿Cómo estas?", en: "How are you?", ru: "Как дела?", pron: "Kak dela?" },
+            { es: "Buenos dias", en: "Good morning", ru: "Доброе утро", pron: "Dobroye utro" },
+            { es: "Buenas noches", en: "Good night", ru: "Спокойной ночи", pron: "Spokoynoy nochi" },
+            { es: "Lo siento", en: "I'm sorry", ru: "Извините", pron: "Izvinite" },
+            { es: "Te quiero", en: "I love you", ru: "Я тебя люблю", pron: "Ya tebya lyublyu" },
+            { es: "Hasta luego", en: "See you later", ru: "До свидания", pron: "Do svidaniya" },
+            { es: "Si", en: "Yes", ru: "Да", pron: "Da" },
+            { es: "No", en: "No", ru: "Нет", pron: "Net" },
+            { es: "¿Donde esta el baño?", en: "Where is the bathroom?", ru: "Где находится туалет?", pron: "Gde nakhoditsya tualet?" },
+            { es: "¿Cuanto cuesta?", en: "How much is it?", ru: "Сколько это стоит?", pron: "Skol'ko eto stoit?" },
+            { es: "Me gusta", en: "I like it", ru: "Мне нравится", pron: "Mne nravitsya" },
+            { es: "No entiendo", en: "I don't understand", ru: "Я не понимаю", pron: "Ya ne ponimayu" },
+            { es: "Ayuda", en: "Help", ru: "Помощь", pron: "Pomoshch" },
+            { es: "Salud", en: "Bless you", ru: "Будьте здоровы", pron: "Bud'te zdorovy" },
+            { es: "Perdon", en: "Excuse me", ru: "Извините", pron: "Izvinite" },
+            { es: "Felicidades", en: "Congratulations", ru: "Поздравляю", pron: "Pozdravlyayu" },
+            { es: "Bienvenido", en: "Welcome", ru: "Добро пожаловать", pron: "Dobro pozhalovat" },
+            { es: "¿Hablas ingles?", en: "Do you speak English?", ru: "Вы говорите по-английски?", pron: "Vy govorite po-angliyski?" },
+            { es: "Estoy perdido", en: "I am lost", ru: "Я потерялся", pron: "Ya poteryalsya" },
+            { es: "¿Puedo ayudarte?", en: "Can I help you?", ru: "Могу я вам помочь?", pron: "Mogu ya vam pomoch?" },
+            { es: "¿Que hora es?", en: "What time is it?", ru: "Который час?", pron: "Kotoryy chas?" },
+            { es: "Tengo hambre", en: "I am hungry", ru: "Я голоден", pron: "Ya goloden" },
+            { es: "Tengo sed", en: "I am thirsty", ru: "Я хочу пить", pron: "Ya khochu pit'" },
+            { es: "Es hermoso", en: "It is beautiful", ru: "Это красиво", pron: "Eto krasivo" },
+            { es: "Buena suerte", en: "Good luck", ru: "Удачи", pron: "Udachi" },
+            { es: "Feliz cumpleaños", en: "Happy birthday", ru: "С днём рождения", pron: "S dnyom rozhdeniya" },
+            { es: "Buen viaje", en: "Have a good trip", ru: "Счастливого пути", pron: "Schastlivogo puti" },
+            { es: "¿Puedo tomar una foto?", en: "Can I take a photo?", ru: "Можно сфотографировать?", pron: "Mozhno sfotografirovat?" },
+            { es: "Nos vemos mañana", en: "See you tomorrow", ru: "Увидимся завтра", pron: "Uvidimsya zavtra" },
+            { es: "Estoy feliz", en: "I am happy", ru: "Я счастлив", pron: "Ya schastliv" },
+            { es: "Estoy cansado", en: "I am tired", ru: "Я устал", pron: "Ya ustal" },
+            { es: "Es caro", en: "It is expensive", ru: "Это дорого", pron: "Eto dorogo" },
+            { es: "Es barato", en: "It is cheap", ru: "Это дешево", pron: "Eto deshevo" },
+            { es: "Llamame", en: "Call me", ru: "Позвони мне", pron: "Pozvoni mne" },
+            { es: "Es mi amigo", en: "He is my friend", ru: "Он мой друг", pron: "On moy drug" },
+            { es: "Es mi amiga", en: "She is my friend", ru: "Она моя подруга", pron: "Ona moya podruga" },
+            { es: "Vamos", en: "Let's go", ru: "Пойдём", pron: "Poydyom" },
+            { es: "Ten cuidado", en: "Be careful", ru: "Будь осторожен", pron: "Bud' ostorozhen" },
+            { es: "Tengo una reserva", en: "I have a reservation", ru: "У меня есть бронь", pron: "U menya yest' bron'" },
+            { es: "Llamame un taxi", en: "Call me a taxi", ru: "Вызовите мне такси", pron: "Vyzovite mne taksi" },
+            { es: "¿Puedo ayudarle?", en: "May I help you?", ru: "Могу я вам помочь?", pron: "Mogu ya vam pomoch?" },
+            { es: "No pasa nada", en: "It's okay", ru: "Ничего страшного", pron: "Nichego strashnogo" },
+            { es: "Buen trabajo", en: "Good job", ru: "Хорошая работа", pron: "Khoroshaya rabota" },
+            { es: "Lo intentare", en: "I will try", ru: "Я попробую", pron: "Ya poprobuyu" },
+        ];
+
+        // Función para mostrar una frase aleatoria
+        function mostrarFrase() {
+            const frase = frases[Math.floor(Math.random() * frases.length)];
+            const contenedor = document.getElementById('contenedor-frases');
+            contenedor.innerHTML = `
+                <div class="contenedor-frase">
+                    <div class="frase">${frase.es}</div>
+                    <div class="idioma">${frase.en}</div>
+                    <div class="idioma">${frase.ru}</div>
+                    <div class="idioma">Pronunciación: ${frase.pron}</div>
+                </div>
+            `;
+        }
+
+        // Función para manejar el cambio de tema
+        const botonTema = document.getElementById('boton-tema');
+        botonTema.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                botonTema.textContent = 'Cambiar a modo claro';
+            } else {
+                botonTema.textContent = 'Cambiar a modo oscuro';
+            }
+        });
+
+        // Comprobar la traducción
+        const frasePractica = document.getElementById('frase-practica');
+        const respuestaTraduccion = document.getElementById('respuesta-traduccion');
+        const botonComprobarTraduccion = document.getElementById('boton-comprobar-traduccion');
+        const botonSiguientePrueba = document.getElementById('boton-siguiente-prueba');
+
+        let traduccionCorrecta = "";
+
+        function calcularSimilitud(str1, str2) {
+            str1 = str1.toLowerCase();
+            str2 = str2.toLowerCase();
+
+            const palabras1 = str1.split(' ');
+            const palabras2 = str2.split(' ');
+
+            const interseccion = palabras1.filter(palabra => palabras2.includes(palabra)).length;
+            const union = new Set([...palabras1, ...palabras2]).size;
+
+            return interseccion / union;
+        }
+
+        function mostrarFrasePractica() {
+            const frase = frases[Math.floor(Math.random() * frases.length)];
+            frasePractica.textContent = `Frase en ruso: ${frase.ru}`;
+            traduccionCorrecta = frase.es;
+            respuestaTraduccion.value = "";
+            respuestaTraduccion.classList.remove('correcto', 'incorrecto');
+            botonSiguientePrueba.style.display = "none";
+        }
+
+        botonComprobarTraduccion.addEventListener('click', () => {
+            const respuestaUsuario = respuestaTraduccion.value.trim();
+            const similitud = calcularSimilitud(respuestaUsuario, traduccionCorrecta);
+
+            if (similitud > 0.6) {
+                respuestaTraduccion.classList.add('correcto');
+                respuestaTraduccion.classList.remove('incorrecto');
+                botonSiguientePrueba.style.display = "inline-block";
+            } else {
+                respuestaTraduccion.classList.add('incorrecto');
+                respuestaTraduccion.classList.remove('correcto');
+            }
+        });
+
+        botonSiguientePrueba.addEventListener('click', mostrarFrasePractica);
+
+        document.getElementById('boton-siguiente').addEventListener('click', mostrarFrase);
+        mostrarFrase();
+        mostrarFrasePractica();
+    </script>
+</body>
+</html>
+
